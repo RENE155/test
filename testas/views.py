@@ -16,7 +16,6 @@ CHOICES = (
 
 
 def test(request):
-    # Ensure there's a 'responses' key in the session, with an empty dictionary as a default
     if 'responses' not in request.session:
         request.session['responses'] = {}
 
@@ -24,8 +23,7 @@ def test(request):
         responses = request.session['responses']
         
         if 'submit' in request.POST:
-            if responses:  # Check if the responses dictionary is not empty
-                # Calculate the average score and determine the personality type
+            if responses:  
                 total_score = sum(int(value) for value in responses.values())
                 average_score = total_score / len(responses)
                 if average_score <= 2:
@@ -35,27 +33,23 @@ def test(request):
                 else:
                     personality = "Visionary"
             else:
-                # Default values in case there are no responses
                 average_score = 0
                 personality = "Undefined"
 
-            # Save the test result
             TestResult.objects.create(
                 date_taken=timezone.now(),
                 average_score=average_score,
                 personality_type=personality
             )
             
-            # Clear 'responses' and 'current_page' from the session
             if 'responses' in request.session:
                 del request.session['responses']
             if 'current_page' in request.session:
                 del request.session['current_page']
             
-            return redirect('test_results')  # Redirect to the first page or results page
+            return redirect('test_results') 
 
         else:
-            # Update responses with the current POST data
             for key, value in request.POST.items():
                 if key.startswith('response_'):
                     question_id = key.split('_')[1]
@@ -66,7 +60,6 @@ def test(request):
             return redirect(f'/testas/test?page={page_number}')
 
     else:
-        # Handle GET requests: prepare and render the test questions
         questions = Question.objects.all()
         paginator = Paginator(questions, 10)
         page_number = request.GET.get('page', 1)
