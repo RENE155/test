@@ -16,13 +16,11 @@ CHOICES = (
 
 
 def test(request):
-    # Initialize responses in session if not present
     request.session.setdefault('responses', {})
 
     if request.method == 'POST':
         responses = request.session['responses']
         
-        # Check if it's the final submission
         if 'submit' in request.POST:
             # Calculate results and save them
             average_score = sum(int(value) for value in responses.values()) / len(responses)
@@ -33,33 +31,27 @@ def test(request):
                                       average_score=average_score,
                                       personality_type=personality)
             
-            # Clear session data and redirect
             request.session.pop('responses', None)
             request.session.pop('current_page', None)
             return redirect('test_results')
         else:
-            # Update responses with current page's answers
             for key, value in request.POST.items():
                 if key.startswith('response_'):
                     question_id = key.split('_')[1]
                     responses[question_id] = int(value)
 
             request.session.modified = True
-            # Get the requested page number, default to 1 if not provided
             page_number = request.POST.get('page', 1)
             return redirect(f'{reverse("test")}?page={page_number}')
 
     else:
-        # Paginator setup for GET request
         questions = Question.objects.all()
         paginator = Paginator(questions, 10)
         page_number = request.GET.get('page', 1)
         page_obj = paginator.get_page(page_number)
         
-        # Calculate progress percentage for the progress bar
         progress_percentage = (page_obj.number / paginator.num_pages) * 100
 
-        # Render the page with questions
         return render(request, 'tests/test.html', {
             'page_obj': page_obj,
             'progress_percentage': progress_percentage,
