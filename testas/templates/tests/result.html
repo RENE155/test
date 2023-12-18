@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-3">
+    <div class="text-center">
+        <h1 class="display-4">Your Personality Assessment Results</h1>
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="mb-4">You are a:</h2>
+                <h3 class="display-5 text-primary">{{ personality }}</h3>
+            </div>
+        </div>
+        {% if personality %}
+            <div class="card my-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Professional Advice</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ advice.professional_advice }}</p>
+                </div>
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Personal Growth Advice</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ advice.personal_advice }}</p>
+                </div>
+                <div class="card-header bg-light">
+                    <h5 class="mb-0">Growth and Development</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ advice.growth_advice }}</p>
+                </div>
+            </div>
+        {% else %}
+            <p>No personality type found.</p>
+        {% endif %}
+        <a href="{% url 'test' %}" class="btn btn-lg btn-primary btn-block mt-3">Retake the Test</a>
+    </div>
+</div>
+{% endblock %}

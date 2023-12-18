@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Personality Test</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css"> 
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon"> 
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <i class="bi bi-person-lines-fill"></i> 
+        Personality Test
+      </a>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">
+            <i class="bi bi-house"></i> 
+            Homepage
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'test' %}">
+            <i class="bi bi-play-circle"></i>
+            Start The Test
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-10">
+          
+          {% block content %}
+          
+          {% endblock %}
+        </div>
+      </div>
+    </div>    
+</body>
+</html>

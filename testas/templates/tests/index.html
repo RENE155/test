@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% load static %}
+    
+    <br>   
+        <div class="full-width-image-container"> <!-- This will control the height of the image -->
+            <img src="{% static 'images/baneris.gif' %}" alt="Personality Test" class="full-width-image">
+        </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/image1.svg' %}" alt="Discover your personality" class="img-fluid mx-auto d-block">
+            <h3>Discover your personality within minutes!</h3>
+            <p>It provides you with detailed, unique information that can help you plan your life and work more successfully.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="{% static 'images/image2.svg' %}" alt="Valuable insights for life" class="img-fluid mx-auto d-block">
+            <h3>Get valuable insights for your life.</h3>
+            <p>90% of users consider they were able to take concrete actions to improve areas of their personal and professional life.</p>
+        </div>
+    </div>
+<div class="container mt-3">
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <h5 class="mb-0 text-center">Personality Test Statistics</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4 statistics-block">
+                    <p><strong>Percentage of Realists:</strong> {{ percent_realists|floatformat:"0" }}%</p>
+                </div>
+                <div class="col-4 statistics-block">
+                    <p><strong>Percentage of Dreamers:</strong> {{ percent_dreamers|floatformat:"0" }}%</p>
+                </div>
+                <div class="col-4 statistics-block">
+                    <p><strong>Percentage of Visionaries:</strong> {{ percent_visionaries|floatformat:"0" }}%</p>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="text-center">
+        <h2>How does it work?</h2>
+        <div class="row my-4">
+            <div class="col-md-4">
+                <div class="number-circle">1</div>
+                <h4>Get ready</h4>
+                <p>Make sure you're in a comfortable environment where you can focus on the test</p>
+            </div>
+            <div class="col-md-4">
+                <div class="number-circle">2</div>
+                <h4>Take the test</h4>
+                <p>You will answer 50 questions about yourself</p>
+            </div>
+            <div class="col-md-4">
+                <div class="number-circle">3</div>
+                <h4>Get your results</h4>
+                <p>Get the report to check all the personality types and discover where you fit in!</p>
+            </div>
+        </div>
+        <p><a href="{% url 'test' %}" class="btn btn-lg btn-primary btn-block">Start The Test</a></p>
+    </div>
+</div>
+
+{% endblock %}
