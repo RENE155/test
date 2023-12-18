@@ -3,9 +3,6 @@
 
 <div class="container mt-3">
 
-    <div class="progress" style="height: 20px;">
-        <div class="progress-bar" role="progressbar" style="width: {{ progress_percentage }}%;" aria-valuenow="{{ progress_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</div>
-    </div>
 
     <div class="alert alert-primary text-center mt-3" role="alert">
         Select the answers based on how well each statement describes you.
@@ -41,10 +38,14 @@
                 <button type="submit" name="page" value="{{ page_obj.next_page_number }}" class="btn btn-lg btn-primary btn-block">Next</button>
             {% else %}
             <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Submit Responses</button>
-
             {% endif %}
         </div>
     </form>
+
+    <div class="text-center">
+        <span class="badge bg-primary">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    </div>
+
 </div>
 
 {% endblock %}
