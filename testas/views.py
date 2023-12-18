@@ -22,7 +22,6 @@ def test(request):
         responses = request.session['responses']
         
         if 'submit' in request.POST:
-            # Calculate results and save them
             average_score = sum(int(value) for value in responses.values()) / len(responses)
             personality = ("Realist" if average_score <= 2 else
                            "Dreamer" if average_score <= 4 else
