@@ -16,34 +16,57 @@ CHOICES = (
 
 
 def test(request):
-    request.session.setdefault('responses', {})
+    # Ensure there's a 'responses' key in the session, with an empty dictionary as a default
+    if 'responses' not in request.session:
+        request.session['responses'] = {}
 
     if request.method == 'POST':
         responses = request.session['responses']
         
         if 'submit' in request.POST:
-            average_score = sum(int(value) for value in responses.values()) / len(responses)
-            personality = ("Realist" if average_score <= 2 else
-                           "Dreamer" if average_score <= 4 else
-                           "Visionary")
-            TestResult.objects.create(date_taken=timezone.now(),
-                                      average_score=average_score,
-                                      personality_type=personality)
+            if responses:  # Check if the responses dictionary is not empty
+                # Calculate the average score and determine the personality type
+                total_score = sum(int(value) for value in responses.values())
+                average_score = total_score / len(responses)
+                if average_score <= 2:
+                    personality = "Realist"
+                elif average_score <= 4:
+                    personality = "Dreamer"
+                else:
+                    personality = "Visionary"
+            else:
+                # Default values in case there are no responses
+                average_score = 0
+                personality = "Undefined"
+
+            # Save the test result
+            TestResult.objects.create(
+                date_taken=timezone.now(),
+                average_score=average_score,
+                personality_type=personality
+            )
             
-            request.session.pop('responses', None)
-            request.session.pop('current_page', None)
-            return redirect('test_results')
+            # Clear 'responses' and 'current_page' from the session
+            if 'responses' in request.session:
+                del request.session['responses']
+            if 'current_page' in request.session:
+                del request.session['current_page']
+            
+            return redirect('test_results')  # Redirect to the first page or results page
+
         else:
+            # Update responses with the current POST data
             for key, value in request.POST.items():
                 if key.startswith('response_'):
                     question_id = key.split('_')[1]
-                    responses[question_id] = int(value)
+                    responses[question_id] = value
 
             request.session.modified = True
             page_number = request.POST.get('page', 1)
-            return redirect(f'{reverse("test")}?page={page_number}')
+            return redirect(f'/testas/test?page={page_number}')
 
     else:
+        # Handle GET requests: prepare and render the test questions
         questions = Question.objects.all()
         paginator = Paginator(questions, 10)
         page_number = request.GET.get('page', 1)
@@ -56,6 +79,8 @@ def test(request):
             'progress_percentage': progress_percentage,
             'choices': CHOICES 
         })
+
+
 
     
 
