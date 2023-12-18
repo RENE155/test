@@ -23,7 +23,7 @@ Navigate to the homepage, start the personality test, and answer the questions p
 
 # Asmenybės Testo Programa
 
-Ši Django aplikacija pateikia paprastą asmenybės testą. Naudotojas atsako į eilę klausimų, ir remiantis jų atsakymais, programa juos klasifikuoja į vieną iš trijų asmenybės tipų: Realistą, Svajotoją ar Vizionierių.
+Ši Django aplikacija pateikia paprastą asmenybės testą. Vartotojas atsako į eilę klausimų, ir remiantis jų atsakymais, programa juos klasifikuoja į vieną iš trijų asmenybės tipų: Realistą, Svajotoją ar Vizionierių.
 
 ## Funkcijos
 
