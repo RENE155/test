@@ -4,7 +4,6 @@ This Django application provides a simple personality test. The user answers a s
 
 ## Features
 
-- Personality test with dynamic question pages.
 - Calculation of average scores and categorization into personality types.
 - Display of results with personalized advice.
 - Overall test statistics on the homepage.
@@ -28,18 +27,17 @@ Navigate to the homepage, start the personality test, and answer the questions p
 
 ## Funkcijos
 
-- Asmenybės testas su dinamiškais klausimų puslapiais.
 - Vidutinių įvertinimų skaičiavimas ir kategorizavimas į asmenybės tipus.
 - Rezultatų rodymas su asmeniniais patarimais.
-- Bendroji testo statistika namų puslapyje.
+- Bendroji testo statistika pagrindiniame puslapyje.
 
 ## Įdiegimas
 
 1. Klonuokite repozitoriją.
 2. Nustatykite virtualią aplinką ir aktyvinkite ją.
-3. Įdiekite reikalingas priklausomybes: `pip install -r requirements.txt`.
+3. Įdiekite reikalingas bibliotekas: `pip install -r requirements.txt`.
 4. Paleiskite programą: `python manage.py runserver`.
 
 ## Naudojimas
 
-Eikite į pradinį puslapį, pradėkite asmenybės testą ir atsakykite į pateiktus klausimus. Baigę žiūrėkite savo asmenybės tipą ir asmeninius patarimus.
+Eikite į pradinį puslapį, pradėkite asmenybės testą ir atsakykite į pateiktus klausimus. Baigę - sužinosite savo asmenybės tipą ir gausite asmeninius patarimus.
