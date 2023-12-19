@@ -19,7 +19,7 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         {% for value, text in choices %}
                             <div class="form-check mb-2 mb-md-0">
-                                <input class="form-check-input" type="radio" name="response_{{ question.id }}" id="response_{{ question.id }}_{{ value }}" value="{{ value }}">
+                                <input class="form-check-input" type="radio" name="response_{{ question.id }}" id="response_{{ question.id }}_{{ value }}" value="{{ value }}" required>
                                 <label class="form-check-label" for="response_{{ question.id }}_{{ value }}">
                                     {{ text }}
                                 </label>
