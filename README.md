@@ -19,7 +19,12 @@ This Django application provides a simple personality test. The user answers a s
 
 Navigate to the homepage, start the personality test, and answer the questions provided. Once completed, view your personality type and personalized advice.
 
+## Contacts
+
+Renaldas Ivanauskas - feeling.r@gmail.com
+
 ---
+
 
 # Asmenybės Testo Programa
 
@@ -41,3 +46,7 @@ Navigate to the homepage, start the personality test, and answer the questions p
 ## Naudojimas
 
 Eikite į pradinį puslapį, pradėkite asmenybės testą ir atsakykite į pateiktus klausimus. Baigę - sužinosite savo asmenybės tipą ir gausite asmeninius patarimus.
+
+## Kontaktai
+
+Renaldas Ivanauskas - feeling.r@gmail.com
