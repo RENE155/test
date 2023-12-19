@@ -1,6 +1,5 @@
 # views.py
 from django.shortcuts import render, redirect
-from django.urls import reverse
 from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import Question, TestResult, PersonalityAdvice
